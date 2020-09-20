@@ -12,15 +12,15 @@ amqp.connect("amqp://localhost", function (err, conn) {
     });
   });
 });
-let args = new Map();
-args.set("x-max-priority", 5);
+
 export const publishToQueue = async (queueName, data, priority) => {
   try {
     console.log(priority);
-    // await
+
     await ch.sendToQueue(queueName, Buffer.from(data), {
       priority: priority,
     });
+
     console.log("Your request is being processed");
   } catch (err) {
     console.error(err);
